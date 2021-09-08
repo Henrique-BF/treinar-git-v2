@@ -21,8 +21,9 @@ class FlightFactory extends Factory
      */
     public function definition()
     {
+        //dd($this->faker->dateTimeBetween('tomorrow', '+1 year')->format('u'));
         return [
-            'departure_at' => $this->faker->dateTimeBetween('tomorrow', '+1 year'),
+            'departure_at' => $this->faker->dateTimeBetween('tomorrow', '+1 year')->format('Y-m-d H:i:s'),
             'destination' => $this->faker->city(),
             'from' => $this->faker->city(),
         ];

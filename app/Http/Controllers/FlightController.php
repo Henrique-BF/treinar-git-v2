@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFlightRequest;
 use App\Models\Flight;
+use App\Http\Resources\FlightResource;
 
 class FlightController extends Controller
 {
@@ -14,7 +15,8 @@ class FlightController extends Controller
      */
     public function index()
     {
-        return Flight::all();
+        //return Flight::all();
+        return FlightResource::collection(Flight::all());
     }
 
     /**
@@ -25,7 +27,7 @@ class FlightController extends Controller
      */
     public function store(StoreFlightRequest $request)
     {
-        return Flight::create($request->validate());
+        return Flight::create($request->validated());
     }
 
     /**
@@ -36,6 +38,7 @@ class FlightController extends Controller
      */
     public function show(Flight $flight)
     {
+        //return new FlightResource(Flight::findOrFail($flight->id));
         return $flight;
     }
 
@@ -48,7 +51,7 @@ class FlightController extends Controller
      */
     public function update(StoreFlightRequest $request, Flight $flight)
     {
-        return $flight->update($request->validate());
+        return $flight->update($request->validated());
     }
 
     /**
